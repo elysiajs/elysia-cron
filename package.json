@@ -1,6 +1,6 @@
 {
   "name": "@kingworldjs/cron",
-  "version": "0.0.0-experimental.0",
+  "version": "0.0.0-experimental.1",
   "description": "A plugin for kingworld that add support for running cronjob",
   "author": {
     "name": "saltyAom",
@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "croner": ">= 5.0.0",
-    "kingworld": ">= 0.0.0-experimental.42"
+    "kingworld": ">= 0.0.0-experimental.44"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
@@ -41,7 +41,7 @@
     "@types/node": "^18.11.7",
     "bun-types": "^0.2.2",
     "eslint": "^8.26.0",
-    "kingworld": "0.0.0-experimental.42",
+    "kingworld": "0.0.0-experimental.44",
     "nodemon": "^2.0.20",
     "typescript": "^4.8.4"
   },

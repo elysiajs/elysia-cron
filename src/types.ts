@@ -39,7 +39,6 @@ declare module 'kingworld' {
             request: {}
             store: CronStore<Name> & Instance['store']
             schema: {}
-        }> &
-            this['store']
+        }>
     }
 }
