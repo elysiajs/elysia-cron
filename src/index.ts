@@ -1,9 +1,9 @@
-import { KingWorld } from 'kingworld'
+import { Elysia } from 'elysia'
 import { Cron } from 'croner'
 
 import type { CronConfig, CronStore } from './types'
 
-KingWorld.prototype.cron = function (
+Elysia.prototype.cron = function (
     { pattern, name, ...options } = {
         name: '' as any,
         pattern: ''

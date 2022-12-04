@@ -1,7 +1,7 @@
 {
-  "name": "@kingworldjs/cron",
+  "name": "@elysiajs/cron",
   "version": "0.0.0-experimental.1",
-  "description": "A plugin for kingworld that add support for running cronjob",
+  "description": "A plugin for Elysia that add support for running cronjob",
   "author": {
     "name": "saltyAom",
     "url": "https://github.com/SaltyAom",
@@ -16,12 +16,12 @@
     "kingworld",
     "cron"
   ],
-  "homepage": "https://github.com/saltyaom/kingworld-cron",
+  "homepage": "https://github.com/elysiajs/elysia-cron",
   "repository": {
     "type": "git",
-    "url": "https://github.com/saltyaom/kingworld-cron"
+    "url": "https://github.com/elysiajs/elysia-cron"
   },
-  "bugs": "https://github.com/SaltyAom/kingworld-cron/issues",
+  "bugs": "https://github.com/elysiajs/elysia-cron/issues",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --config nodemon.json",
@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "croner": ">= 5.0.0",
-    "kingworld": ">= 0.0.0-experimental.44"
+    "elysia": ">= 0.0.0-experimental.56"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
@@ -41,7 +41,7 @@
     "@types/node": "^18.11.7",
     "bun-types": "^0.2.2",
     "eslint": "^8.26.0",
-    "kingworld": "0.0.0-experimental.44",
+    "elysia": "0.0.0-experimental.56",
     "nodemon": "^2.0.20",
     "typescript": "^4.8.4"
   },

@@ -28,14 +28,14 @@ export interface CronStore<Name extends string = string> {
     cron: Record<Name, Cron>
 }
 
-declare module 'kingworld' {
-    interface KingWorld {
+declare module 'elysia' {
+    interface Elysia {
         cron<Name extends string = string, Instance extends this = this>(
             options: Omit<CronConfig<Name>, 'run'>,
             run: (
                 store: CronStore<Name> & Instance['store']
             ) => void | Promise<void>
-        ): KingWorld<{
+        ): Elysia<{
             request: {}
             store: CronStore<Name> & Instance['store']
             schema: {}

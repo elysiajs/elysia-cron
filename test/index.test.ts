@@ -1,4 +1,4 @@
-import { KingWorld } from 'kingworld'
+import { Elysia } from 'elysia'
 import '../src'
 
 import { describe, expect, it } from 'bun:test'
@@ -9,7 +9,7 @@ describe('Cron', () => {
     it('run cronjob', async () => {
         let done = false
 
-        new KingWorld().cron(
+        new Elysia().cron(
             {
                 pattern: '*/1 * * * * *',
                 name: 'job'
@@ -25,7 +25,7 @@ describe('Cron', () => {
     })
 
     it('add cron to store', async () => {
-        const app = new KingWorld().cron(
+        const app = new Elysia().cron(
             {
                 pattern: '*/1 * * * * *',
                 name: 'job'
@@ -39,7 +39,7 @@ describe('Cron', () => {
     it('can stop cronjob', async () => {
         let done = false
 
-        const app = new KingWorld()
+        const app = new Elysia()
             .cron(
                 {
                     pattern: '*/1 * * * * *',

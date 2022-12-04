@@ -1,5 +1,5 @@
 # @kingworldjs/cron
-A plugin for [kingworld](https://github.com/saltyaom/kingworld) that add support for running cronjob.
+A plugin for [kingworld](https://github.com/elysiajs/elysia) that add support for running cronjob.
 
 ## Installation
 ```bash
