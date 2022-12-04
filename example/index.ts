@@ -1,7 +1,7 @@
-import { KingWorld } from 'kingworld'
+import { Elysia } from 'elysia'
 import '../src'
 
-const app = new KingWorld()
+const app = new Elysia()
     .cron(
         {
             name: 'heartbeat',

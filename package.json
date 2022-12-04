@@ -1,7 +1,7 @@
 {
   "name": "@elysiajs/cron",
   "version": "0.0.0-experimental.1",
-  "description": "A plugin for Elysia that add support for running cronjob",
+  "description": "Plugin for Elysia that add support for running cronjob",
   "author": {
     "name": "saltyAom",
     "url": "https://github.com/SaltyAom",
@@ -13,7 +13,7 @@
   "types": "src/index.ts",
   "typings": "src/index.ts",
   "keywords": [
-    "kingworld",
+    "elysia",
     "cron"
   ],
   "homepage": "https://github.com/elysiajs/elysia-cron",
