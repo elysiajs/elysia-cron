@@ -1,6 +1,6 @@
 {
   "name": "@elysiajs/cron",
-  "version": "0.0.0-rc.2",
+  "version": "0.0.0-rc.3",
   "description": "Plugin for Elysia that add support for running cronjob",
   "author": {
     "name": "saltyAom",
@@ -13,7 +13,7 @@
     "node": "./dist/index.js",
     "default": "./dist/index.js"
   },
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "keywords": [
     "elysia",
     "cron"

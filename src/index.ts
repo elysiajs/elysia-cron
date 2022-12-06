@@ -18,18 +18,3 @@ Elysia.prototype.cron = function (
         [name]: new Cron(pattern, options, () => run(this.store))
     } as CronStore['cron'])
 }
-
-declare module 'elysia' {
-    interface Elysia {
-        cron<Name extends string = string, Instance extends this = this>(
-            options: Omit<CronConfig<Name>, 'run'>,
-            run: (
-                store: CronStore<Name> & Instance['store']
-            ) => void | Promise<void>
-        ): Elysia<{
-            request: {}
-            store: CronStore<Name> & Instance['store']
-            schema: {}
-        }>
-    }
-}
