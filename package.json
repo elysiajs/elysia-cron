@@ -1,12 +1,13 @@
 {
   "name": "@elysiajs/cron",
-  "version": "0.0.0-rc.3",
+  "version": "0.0.0-rc.4",
   "description": "Plugin for Elysia that add support for running cronjob",
   "author": {
     "name": "saltyAom",
     "url": "https://github.com/SaltyAom",
     "email": "saltyaom@gmail.com"
   },
+  "main": "./dist/index.js",
   "exports": {
     "require": "./dist/cjs/index.js",
     "import": "./dist/index.js",
