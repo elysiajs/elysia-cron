@@ -1,6 +1,6 @@
 {
   "name": "@elysiajs/cron",
-  "version": "0.0.0-rc.5",
+  "version": "0.0.0-rc.6",
   "description": "Plugin for Elysia that add support for running cronjob",
   "author": {
     "name": "saltyAom",
@@ -29,9 +29,7 @@
   "scripts": {
     "dev": "bun run --hot example/index.ts",
     "test": "bun wiptest",
-    "build": "rimraf dist && npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --project tsconfig.cjs.json",
-    "build:esm": "tsc --project tsconfig.esm.json",
+    "build": "rimraf dist && tsc --project tsconfig.esm.json",
     "release": "npm run build && npm run test && npm publish --access public"
   },
   "peerDependencies": {
