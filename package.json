@@ -28,7 +28,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "bun run --hot example/index.ts",
-    "test": "bun wiptest",
+    "test": "bun test",
     "build": "rimraf dist && tsc --project tsconfig.esm.json",
     "release": "npm run build && npm run test && npm publish --access public"
   },
@@ -38,9 +38,11 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.7",
-    "bun-types": "^0.2.2",
-    "eslint": "^8.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "bun-types": "^0.5.7",
     "elysia": "^0.1.0-rc.5",
+    "eslint": "^8.34.0",
     "rimraf": "^3.0.2",
     "typescript": "^4.8.4"
   },
