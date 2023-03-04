@@ -1,3 +1,4 @@
+import type { ElysiaInstance } from 'elysia'
 import { type Cron } from 'croner'
 import type { CronOptions } from 'croner/types/options'
 
@@ -30,15 +31,21 @@ export interface CronStore<Name extends string = string> {
 
 declare module 'elysia' {
     interface Elysia {
-        cron<Name extends string = string, Instance extends this = this>(
+        cron<Name extends string = string>(
             options: Omit<CronConfig<Name>, 'run'>,
             run: (
-                store: CronStore<Name> & Instance['store']
+                store: CronStore<Name> & this['store']
             ) => void | Promise<void>
-        ): Elysia<{
-            request: {}
-            store: CronStore<Name> & Instance['store']
-            schema: {}
-        }>
+        ): this extends Elysia<infer A>
+            ? Elysia<
+                  A & {
+                      store: CronStore<Name>
+                  }
+              >
+            : Elysia<
+                  ElysiaInstance & {
+                      store: CronStore<Name>
+                  }
+              >
     }
 }

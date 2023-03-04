@@ -3,6 +3,7 @@ import { Cron } from 'croner'
 
 import type { CronConfig, CronStore } from './types'
 
+// @ts-ignore
 Elysia.prototype.cron = function (
     { pattern, name, ...options } = {
         name: '' as any,

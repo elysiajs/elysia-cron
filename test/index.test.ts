@@ -36,7 +36,7 @@ describe('Cron', () => {
         expect(Object.keys(app.store.cron)[0]).toBe('job')
     })
 
-    it('can stop cronjob', async () => {
+    it('stop cronjob', async () => {
         let done = false
 
         const app = new Elysia()
@@ -55,9 +55,7 @@ describe('Cron', () => {
                 return 'stop'
             })
 
-        app.handle(req('/stop'))
-
-        await new Promise((resolve) => setTimeout(resolve, 1100))
+        await app.handle(req('/stop'))
 
         expect(done).toBe(false)
     })
