@@ -1,6 +1,5 @@
 import type { ElysiaInstance } from 'elysia'
-import { type Cron } from 'croner'
-import type { CronOptions } from 'croner/types/options'
+import type { Cron, CronOptions } from 'croner'
 
 export interface CronConfig<Name extends string = string> extends CronOptions {
     /**
