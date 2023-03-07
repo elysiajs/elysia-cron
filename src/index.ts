@@ -1,21 +1,50 @@
 import { Elysia } from 'elysia'
-import { Cron } from 'croner'
+import { Cron, type CronOptions } from 'croner'
 
-import type { CronConfig, CronStore } from './types'
-
-// @ts-ignore
-Elysia.prototype.cron = function (
-    { pattern, name, ...options } = {
-        name: '' as any,
-        pattern: ''
-    },
-    run: Function
-) {
-    if (!pattern) throw new Error('pattern is required')
-    if (!name) throw new Error('name is required')
-
-    return this.state('cron', {
-        ...this.store.cron,
-        [name]: new Cron(pattern, options, () => run(this.store))
-    } as CronStore['cron'])
+export interface CronConfig<
+    Name extends string = string
+> extends CronOptions {
+    /**
+     * Input pattern, input date, or input ISO 8601 time string
+     *
+     * ---
+     * ```plain
+     * ┌────────────── second (optional)
+     * │ ┌──────────── minute
+     * │ │ ┌────────── hour
+     * │ │ │ ┌──────── day of month
+     * │ │ │ │ ┌────── month
+     * │ │ │ │ │ ┌──── day of week
+     * │ │ │ │ │ │
+     * * * * * * *
+     * ```
+     */
+    pattern: string
+    /**
+     * Cronjob name to registered to `store`
+     */
+    name: Name
+    /**
+     * Function to execute on time
+     */
+    run: (store: Cron) => any | Promise<any>
 }
+
+export const cron =
+    <Name extends string = string>({
+        pattern,
+        name,
+        run,
+        ...options
+    }: CronConfig<Name>) =>
+    (app: Elysia) => {
+        if (!pattern) throw new Error('pattern is required')
+        if (!name) throw new Error('name is required')
+
+        return app.state('cron', {
+            ...(app.store?.cron ?? {}),
+            [name]: new Cron(pattern, options, () => run(app.store as any))
+        } as Record<Name, Cron>)
+    }
+
+export default cron

@@ -1,22 +1,22 @@
 import { Elysia } from 'elysia'
-import '../src'
+import { cron } from '../src'
 
 import { describe, expect, it } from 'bun:test'
 
-const req = (path: string) => new Request(path)
+const req = (path: string) => new Request(`http://localhost${path}`)
 
 describe('Cron', () => {
     it('run cronjob', async () => {
         let done = false
 
-        new Elysia().cron(
-            {
+        new Elysia().use(
+            cron({
                 pattern: '*/1 * * * * *',
-                name: 'job'
-            },
-            () => {
-                done = true
-            }
+                name: 'job',
+                run() {
+                    done = true
+                }
+            })
         )
 
         await new Promise((resolve) => setTimeout(resolve, 1100))
@@ -25,12 +25,14 @@ describe('Cron', () => {
     })
 
     it('add cron to store', async () => {
-        const app = new Elysia().cron(
-            {
+        const app = new Elysia().use(
+            cron({
                 pattern: '*/1 * * * * *',
-                name: 'job'
-            },
-            () => {}
+                name: 'job',
+                run() {
+                    // Not empty
+                }
+            })
         )
 
         expect(Object.keys(app.store.cron)[0]).toBe('job')
@@ -40,14 +42,14 @@ describe('Cron', () => {
         let done = false
 
         const app = new Elysia()
-            .cron(
-                {
+            .use(
+                cron({
                     pattern: '*/1 * * * * *',
-                    name: 'job'
-                },
-                () => {
-                    done = true
-                }
+                    name: 'job',
+                    run() {
+                        done = true
+                    }
+                })
             )
             .get('/stop', ({ store }) => {
                 store.cron.job.stop()

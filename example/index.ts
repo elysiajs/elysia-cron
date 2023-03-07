@@ -1,28 +1,30 @@
 import { Elysia } from 'elysia'
-import '../src'
+import { cron } from '../src'
 
 const app = new Elysia()
-    .cron(
-        {
+    .state("A", "B")
+    .use(
+        cron({
             name: 'heartbeat',
-            pattern: '*/30 * * * * *'
-        },
-        () => {
-            console.log('Working')
-        }
+            pattern: '*/30 * * * * *',
+            run(cron) {
+                console.log('Working')
+            }
+        })
     )
-    .cron(
-        {
+    .use(
+        cron({
             name: 'logger',
-            pattern: '*/1 * * * * *'
-        },
-        () => {
-            console.log(new Date().toISOString())
-        }
+            pattern: '*/1 * * * * *',
+            run(cron) {
+                console.log(new Date().toISOString())
+            }
+        })
     )
     .get(
         '/',
         ({
+            store,
             store: {
                 cron: { logger }
             }

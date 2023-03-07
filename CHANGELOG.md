@@ -1,3 +1,11 @@
+# 0.3.0-rc.0 - 7 Mar 2023
+Improvement:
+- Add support for Elysia 0.3.0-rc.0
+
+Breaking change:
+- Remove `.cron`
+- `.cron` 2nd callback parameter is merged to first parameter as `run(cron)`
+
 # 0.3.0-beta.0 - 4 Mar 2023
 Improvement:
 - Add support for Elysia 0.3.0-beta.6
