@@ -1,9 +1,7 @@
 import { Elysia } from 'elysia'
 import { Cron, type CronOptions } from 'croner'
 
-export interface CronConfig<
-    Name extends string = string
-> extends CronOptions {
+export interface CronConfig<Name extends string = string> extends CronOptions {
     /**
      * Input pattern, input date, or input ISO 8601 time string
      *
@@ -42,6 +40,8 @@ export const cron =
         if (!name) throw new Error('name is required')
 
         return app.state('cron', {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             ...(app.store?.cron ?? {}),
             [name]: new Cron(pattern, options, () => run(app.store as any))
         } as Record<Name, Cron>)
