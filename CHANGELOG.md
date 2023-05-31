@@ -1,4 +1,9 @@
+# 0.5.1 - 31 May 2023
+Bug fix:
+- Remove dist from .npmignore
+
 # 0.5.0 - 15 May 2023
+Improvement:
 - Add support for Elysia 0.5
 - Add CommonJS support
 
