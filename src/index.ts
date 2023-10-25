@@ -39,12 +39,18 @@ export const cron =
         if (!pattern) throw new Error('pattern is required')
         if (!name) throw new Error('name is required')
 
-        return app.state('cron', {
+        return app.state(store => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            ...(app.store?.cron ?? {}),
-            [name]: new Cron(pattern, options, () => run(app.store as any))
-        } as Record<Name, Cron>)
+            const prevCron = app.store?.cron ?? {}
+            return {
+                ...store,
+                cron: {
+                    ...prevCron,
+                    [name]: new Cron(pattern, options, () => run(app.store as any)),
+                } as Record<Name, Cron>
+            }
+        })
     }
 
 export default cron
