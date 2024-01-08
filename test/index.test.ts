@@ -1,5 +1,6 @@
 import { Elysia } from 'elysia'
 import { cron } from '../src'
+import { Patterns } from '../src/schedule'
 
 import { describe, expect, it } from 'bun:test'
 
@@ -67,6 +68,7 @@ describe('Mutli Cron', () => {
     it('run cronjobs', async () => {
         let done1 = false
         let done2 = false
+        let done3 = false
 
         new Elysia().use(
             cron({
@@ -85,11 +87,21 @@ describe('Mutli Cron', () => {
                 }
             })
         )
+        .use(
+            cron({
+                pattern: Patterns.everySecond(),
+                name: 'job3',
+                run() {
+                    done3 = true
+                }
+            })
+        )
 
         await new Promise((resolve) => setTimeout(resolve, 1100))
 
         expect(done1).toBe(true)
         expect(done2).toBe(true)
+        expect(done3).toBe(true)
     })
 
     it('add cronjobs to store', async () => {
@@ -109,10 +121,19 @@ describe('Mutli Cron', () => {
                     // Not empty
                 }
             })
+        ).use(
+            cron({
+                pattern: Patterns.EVERY_SECOND,
+                name: 'job3',
+                run() {
+                    // Not empty
+                }
+            })
         )
 
         expect(Object.keys(app.store.cron)[0]).toBe('job1')
         expect(Object.keys(app.store.cron)[1]).toBe('job2')
+        expect(Object.keys(app.store.cron)[2]).toBe('job3')
     })
 
     it('stop cronjobs', async () => {
