@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Elysia } from 'elysia'
 import { cron } from '../src'
 
@@ -35,7 +36,8 @@ describe('Cron', () => {
             })
         )
 
-        expect(Object.keys(app.store.cron)[0]).toBe('job')
+        // @ts-expect-error
+        expect(Object.keys(app.singleton.store.cron)[0]).toBe('job')
     })
 
     it('stop cronjob', async () => {
@@ -68,23 +70,25 @@ describe('Mutli Cron', () => {
         let done1 = false
         let done2 = false
 
-        new Elysia().use(
-            cron({
-                pattern: '*/1 * * * * *',
-                name: 'job1',
-                run() {
-                    done1 = true
-                }
-            })
-        ).use(
-            cron({
-                pattern: '*/1 * * * * *',
-                name: 'job2',
-                run() {
-                    done2 = true
-                }
-            })
-        )
+        new Elysia()
+            .use(
+                cron({
+                    pattern: '*/1 * * * * *',
+                    name: 'job1',
+                    run() {
+                        done1 = true
+                    }
+                })
+            )
+            .use(
+                cron({
+                    pattern: '*/1 * * * * *',
+                    name: 'job2',
+                    run() {
+                        done2 = true
+                    }
+                })
+            )
 
         await new Promise((resolve) => setTimeout(resolve, 1100))
 
@@ -93,26 +97,30 @@ describe('Mutli Cron', () => {
     })
 
     it('add cronjobs to store', async () => {
-        const app = new Elysia().use(
-            cron({
-                pattern: '*/1 * * * * *',
-                name: 'job1',
-                run() {
-                    // Not empty
-                }
-            })
-        ).use(
-            cron({
-                pattern: '*/1 * * * * *',
-                name: 'job2',
-                run() {
-                    // Not empty
-                }
-            })
-        )
+        const app = new Elysia()
+            .use(
+                cron({
+                    pattern: '*/1 * * * * *',
+                    name: 'job1',
+                    run() {
+                        // Not empty
+                    }
+                })
+            )
+            .use(
+                cron({
+                    pattern: '*/1 * * * * *',
+                    name: 'job2',
+                    run() {
+                        // Not empty
+                    }
+                })
+            )
 
-        expect(Object.keys(app.store.cron)[0]).toBe('job1')
-        expect(Object.keys(app.store.cron)[1]).toBe('job2')
+        // @ts-expect-error
+        expect(Object.keys(app.singleton.store.cron)[0]).toBe('job1')
+        // @ts-expect-error
+        expect(Object.keys(app.singleton.store.cron)[1]).toBe('job2')
     })
 
     it('stop cronjobs', async () => {
@@ -128,7 +136,8 @@ describe('Mutli Cron', () => {
                         done1 = true
                     }
                 })
-            ).use(
+            )
+            .use(
                 cron({
                     pattern: '*/1 * * * * *',
                     name: 'job2',
