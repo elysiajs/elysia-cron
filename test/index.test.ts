@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Elysia } from 'elysia'
 import { cron } from '../src'
+import { Patterns } from '../src/schedule'
 
 import { describe, expect, it } from 'bun:test'
 
@@ -69,31 +70,40 @@ describe('Mutli Cron', () => {
     it('run cronjobs', async () => {
         let done1 = false
         let done2 = false
+        let done3 = false
 
-        new Elysia()
-            .use(
-                cron({
-                    pattern: '*/1 * * * * *',
-                    name: 'job1',
-                    run() {
-                        done1 = true
-                    }
-                })
-            )
-            .use(
-                cron({
-                    pattern: '*/1 * * * * *',
-                    name: 'job2',
-                    run() {
-                        done2 = true
-                    }
-                })
-            )
+         new Elysia().use(
+            cron({
+                pattern: '*/1 * * * * *',
+                name: 'job1',
+                run() {
+                    done1 = true
+                }
+            })
+        ).use(
+            cron({
+                pattern: '*/1 * * * * *',
+                name: 'job2',
+                run() {
+                    done2 = true
+                }
+            })
+        )
+        .use(
+            cron({
+                pattern: Patterns.everySecond(),
+                name: 'job3',
+                run() {
+                    done3 = true
+                }
+            })
+        )
 
         await new Promise((resolve) => setTimeout(resolve, 1100))
 
         expect(done1).toBe(true)
         expect(done2).toBe(true)
+        expect(done3).toBe(true)
     })
 
     it('add cronjobs to store', async () => {
@@ -106,8 +116,7 @@ describe('Mutli Cron', () => {
                         // Not empty
                     }
                 })
-            )
-            .use(
+            ).use(
                 cron({
                     pattern: '*/1 * * * * *',
                     name: 'job2',
@@ -115,12 +124,22 @@ describe('Mutli Cron', () => {
                         // Not empty
                     }
                 })
+            ).use(
+                cron({
+                    pattern: Patterns.EVERY_SECOND,
+                    name: 'job3',
+                    run() {
+                        // Not empty
+                    }
+                })
             )
 
         // @ts-expect-error
-        expect(Object.keys(app.singleton.store.cron)[0]).toBe('job1')
+        expect(Object.keys(app.store.cron)[0]).toBe('job1')
         // @ts-expect-error
-        expect(Object.keys(app.singleton.store.cron)[1]).toBe('job2')
+        expect(Object.keys(app.store.cron)[1]).toBe('job2')
+        // @ts-expect-error
+        expect(Object.keys(app.store.cron)[2]).toBe('job3')
     })
 
     it('stop cronjobs', async () => {
