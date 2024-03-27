@@ -55,4 +55,6 @@ export const cron =
         })
     }
 
+export { Patterns } from './schedule'
+
 export default cron
