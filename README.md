@@ -30,6 +30,6 @@ const app = new Elysia()
 ```
 
 ## API
-This plugin export `cron` function using [cronner](https://github.com/hexagon/croner)
+This plugin export `cron` function using [croner](https://github.com/hexagon/croner)
 
-For documentation, `cron` use the same syntax as [cronner](https://github.com/hexagon/croner), so please refers to [cronner documentation](https://github.com/hexagon/croner)
+For documentation, `cron` use the same syntax as [croner](https://github.com/hexagon/croner), so please refers to [croner documentation](https://github.com/hexagon/croner)
