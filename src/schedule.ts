@@ -74,7 +74,7 @@ const FunctionExpressions = {
    * Run the task every S seconds
    * @param {number} seconds
    */
-  everySenconds(seconds = 1) { return `*/${seconds} * * * * *` },
+  everySeconds(seconds = 1) { return `*/${seconds} * * * * *` },
   /**
    * Run the task every M minutes
    * @param {number} minutes
