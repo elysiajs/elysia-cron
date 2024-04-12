@@ -71,6 +71,7 @@ describe('Mutli Cron', () => {
         let done1 = false
         let done2 = false
         let done3 = false
+        let done4 = false
 
          new Elysia().use(
             cron({
@@ -98,12 +99,22 @@ describe('Mutli Cron', () => {
                 }
             })
         )
+        .use(
+            cron({
+                pattern: Patterns.everySeconds(1),
+                name: 'job4',
+                run() {
+                    done4 = true
+                }
+            })
+        )
 
         await new Promise((resolve) => setTimeout(resolve, 1100))
 
         expect(done1).toBe(true)
         expect(done2).toBe(true)
         expect(done3).toBe(true)
+        expect(done4).toBe(true)
     })
 
     it('add cronjobs to store', async () => {
