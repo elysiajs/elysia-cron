@@ -97,7 +97,7 @@ const FunctionExpressions = {
    */
   everyDayAt(time = '00:00') {
     const [hours, minutes] = time.split(':');
-    return `${minutes} ${hours} 0 * *`;
+    return `${minutes} ${hours} * * *`;
   },
   /**
    * Run the task at a specific time on a given day of the week.
