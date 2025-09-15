@@ -1,11 +1,11 @@
 # 1.4.1 - 16 Sep 2025
 Bug fix:
 - [#53](https://github.com/elysiajs/elysia-cron/pull/53) correct cron expression on const
+- [#12](https://github.com/elysiajs/elysia-cron/pull/12) fixed everyDayAt 
 
 # 1.3.0-exp.0 - 23 Apr 2025
 Change:
 - Add support for Elysia 1.3
-
 
 # 1.2.0-rc.0 - 23 Dec 2024
 Change:
