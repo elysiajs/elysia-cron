@@ -1,3 +1,6 @@
+# 1.4.1 - 16 Sep 2025
+Bug fix:
+- [#53](https://github.com/elysiajs/elysia-cron/pull/53) correct cron expression on const
 
 # 1.3.0-exp.0 - 23 Apr 2025
 Change:
