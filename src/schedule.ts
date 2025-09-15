@@ -2,7 +2,7 @@ enum Days {
   SUNDAY = 0,
   MONDAY = 1,
   TUESDAY = 2,
-  WEDNESAY = 3,
+  WEDNESDAY = 3,
   THURSDAY = 4,
   FRIDAY = 5,
   SATURDAY = 6
@@ -74,7 +74,7 @@ const FunctionExpressions = {
    * Run the task every S seconds
    * @param {number} seconds
    */
-  everySenconds(seconds = 1) { return `*/${seconds} * * * * *` },
+  everySeconds(seconds = 1) { return `*/${seconds} * * * * *` },
   /**
    * Run the task every M minutes
    * @param {number} minutes
@@ -152,7 +152,7 @@ const FunctionExpressions = {
   everyWeekday() { return ConstantExpressions.EVERY_WEEKDAY },
   /**
    * Run the task on saturday and sunday at 00:00
-   * Alias: EVERY_WEEKDAY
+   * Alias: EVERY_WEEKEND
    */
   everyWeekend() { return ConstantExpressions.EVERY_WEEKEND },
   /**
