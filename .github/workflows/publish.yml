@@ -34,9 +34,6 @@ jobs:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: replace @elysia to @elysiajs
-        run: sed -i 's/@elysia/@elysiajs/g' package.json
-
       - name: Install packages
         run: bun install
 
