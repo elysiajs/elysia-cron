@@ -1,7 +1,7 @@
 {
-    "name": "@elysiajs/cron",
-    "version": "1.4.1",
-    "description": "Plugin for Elysia that add support for running cronjob",
+    "name": "@elysia/cron",
+    "version": "1.4.2",
+    "description": "Elysia plugin to integrate cron jobs",
     "author": {
         "name": "saltyAom",
         "url": "https://github.com/SaltyAom",

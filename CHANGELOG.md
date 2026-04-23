@@ -1,3 +1,7 @@
+# 1.4.2 - 24 Apr 2026
+Chore:
+- Publish under @elysia scope
+
 # 1.4.1 - 16 Sep 2025
 Bug fix:
 - [#53](https://github.com/elysiajs/elysia-cron/pull/53) correct cron expression on const

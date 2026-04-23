@@ -1,15 +1,15 @@
-# @elysiajs/cron
-Plugin for [elysia](https://github.com/elysiajs/elysia) that add support for running cronjob.
+# @elysia/cron
+[Elysia](https://github.com/elysiajs/elysia) plugin to integrate cron jobs.
 
 ## Installation
 ```bash
-bun add @elysiajs/cron
+bun add @elysia/cron
 ```
 
 ## Example
 ```typescript
 import { Elysia } from 'elysia'
-import { cron } from '@elysiajs/cron'
+import { cron } from '@elysia/cron'
 
 const app = new Elysia()
     use(
