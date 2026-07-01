@@ -49,7 +49,7 @@
         "typescript": "^5.5.3"
     },
     "peerDependencies": {
-        "elysia": "2.0.0-exp.15"
+        "elysia": ">= 2.0.0-exp.23"
     },
     "peerDependenciesMeta": {
         "croner": {
