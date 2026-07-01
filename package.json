@@ -46,7 +46,7 @@
         "elysia": "^2.0.0-exp.23",
         "eslint": "9.6.0",
         "tsdown": "^0.22.3",
-        "typescript": "^5.5.3"
+        "typescript": "^6.0.3"
     },
     "peerDependencies": {
         "elysia": ">= 2.0.0-exp.23"
