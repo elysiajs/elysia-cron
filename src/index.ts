@@ -40,18 +40,14 @@ export const cron =
 		if (!name) throw new Error('name is required')
 
 		return app.state((store) => {
-			// @ts-expect-error private property
-			const prevCron = app.singleton.store?.cron ?? {}
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			const cron: Record<Name, Cron> = store?.cron ?? Object.create(null)
+			cron[name] = new Cron(pattern, options, () => run(store as any))
 
 			return {
 				...store,
-				cron: {
-					...prevCron,
-					[name]: new Cron(pattern, options, () =>
-						// @ts-expect-error private property
-						run(app.singleton.store as any)
-					)
-				} as Record<Name, Cron>
+				cron
 			}
 		})
 	}

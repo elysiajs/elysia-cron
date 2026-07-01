@@ -1,6 +1,6 @@
 {
     "type": "commonjs",
     "dependencies": {
-        "@elysiajs/cron": "../../.."
+        "@elysia/cron": "../../.."
     }
 }
